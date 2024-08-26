@@ -63,6 +63,8 @@ let cols;
 let totCells;
 let score = 0;
 let bombs = [];
+const totNums = 16;
+
 
 
 // Eventi dinamici
@@ -91,8 +93,10 @@ form.addEventListener('submit', function(event) {
 
     
     totCells = rows * cols;                                         // Solo ora che ho decretato la difficoltà con cui il giocatore vuole cimentarsi, posso calcolare il tot delle celle della griglia
+    const maxScore = totCells - totNums;
+    console.log(maxScore, 'è il punteggio massimo');
     let bombs = [];                                                 // pulisco l'array di bombe del'eventuale partita precedente
-    bombs = randomNumbers(totCells);                                // genero un nuovo array di bombe
+    bombs = randomNumbers(totCells, totNums);                                // genero un nuovo array di bombe
     console.log(bombs,totCells);
     grid.innerHTML = '';
 
@@ -104,7 +108,14 @@ form.addEventListener('submit', function(event) {
             console.log(this.innerText, ': è il contenuto della cella che hai cliccato'); // stampa in console del contenuto testuale del nodo cliccato, grazie a this
             if (this.classList.contains('clicked')) return;         // controllo che non abbia già la classe 'clicked', e se si interrompo la funzione
             this.classList.add('clicked');                          // sempre al click sulla cella, aggiungo la classe clicked, per cambiarne il colore di background in pagina
-            scoreElements.innerText = ++score;                      // aumento il punteggio del giocatore al click della cella
+            if (bombs.includes(parseInt(this.innerText))) {         // controllo che ciò che è stato cliccato è una bomba
+                this.classList.add('bomb');                         // nel caso sia una bomba, gli aggiungo la medesima classe
+                console.log('partita terminata');
+            } else scoreElements.innerText = ++score;               // aumento il punteggio del giocatore al click della cella
+                                                                    
+            if (score == maxScore) {                                // controllo che il giocatore abbia raggiunto o meno il massimo punteggio
+                console.log(`hai vinto! Partita terminata. Il tuo punteggio è ${maxScore}`);
+            }                   
         });
 
         grid.appendChild(cell);                                     // aggiungo alla griglia in pagina il nodo appena creato

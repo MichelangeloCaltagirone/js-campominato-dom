@@ -29,9 +29,9 @@ function createCell(content, difficulty) {
 
 // funzione che genera un numero finito di numeri casuali, inserendoli in un array(rappresenteranno le bombe per questo programma)
 
-function randomNumbers(max) {
+function randomNumbers(max, totNums) {
     const numbers = [];
-    while (numbers.length < 16) {
+    while (numbers.length < totNums) {
         const number = Math.floor(Math.random() * max) + 1;
         if (!numbers.includes(number)) numbers.push(number);
     }

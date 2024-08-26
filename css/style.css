@@ -65,8 +65,13 @@ select {
     cursor: pointer;
 }
 .clicked {
-    background-color: brown;
+    background-color: lightskyblue;
     color: yellow;
+}
+.bomb {
+    background-color: red;
+    /* background-image: url('../img/bomb1.jpg'); */
+    background-size: contain;
 }
 
 /* Classi per controllo difficolta */
