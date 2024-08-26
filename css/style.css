@@ -71,7 +71,7 @@ select {
 }
 .bomb {
     background-color: red;
-    /* background-image: url('../img/bomb1.jpg'); */
+    background-image: url('../img/bomb3.png');
     background-size: contain;
 }
 
