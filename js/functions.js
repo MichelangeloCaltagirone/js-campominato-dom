@@ -51,8 +51,22 @@ function endGame (score, hasWon = false) {
     alert(`Hai ${result}! Hai totalizzato un punteggio di: ${score}`); // monto il messaggio
 
     isGameOver = true;                                                 // setto variabile per impedire ancora interazioni con la griglia se la partita è terminata
-
-    for (let i = 0; i < totCells; i++) {
-
-    }
+    showCells(bombs);
 }
+
+// showCells 
+
+// funzione che a fine gioco mostrerà il contenuto di tutte le celle
+
+function showCells(bombs) {
+    const cells = document.querySelectorAll('.cell');     // prendo tutte le cell
+    for (let i = 0; i < cells.length; i++) {              // per ognuna...
+        const cell = cells[i];                            // assegno valore a cell con la variabile del For
+        cell.classList.add('clicked');                    // aggiungo la classe clicked
+        const cellNumb = i + 1;                           // setto il valore uguale al valore contenuto mostrato in pagina
+
+        if(bombs.includes(cellNumb)) {                    // controllo se è una bomba e gli affido relativa classe
+            cell.innerText = '';
+            cell.classList.add('bomb');
+    }}    
+};

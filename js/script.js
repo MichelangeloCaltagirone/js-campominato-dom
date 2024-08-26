@@ -97,7 +97,7 @@ form.addEventListener('submit', function(event) {
     totCells = rows * cols;                                         // Solo ora che ho decretato la difficoltà con cui il giocatore vuole cimentarsi, posso calcolare il tot delle celle della griglia
     const maxScore = totCells - totNums;
     console.log(maxScore, 'è il punteggio massimo');
-    let bombs = [];                                                 // pulisco l'array di bombe del'eventuale partita precedente
+
     bombs = randomNumbers(totCells, totNums);                                // genero un nuovo array di bombe
     console.log(bombs,totCells);
     grid.innerHTML = '';
