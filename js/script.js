@@ -62,6 +62,7 @@ let rows;
 let cols;
 let totCells;
 let score = 0;
+let bombs = [];
 
 
 // Eventi dinamici
@@ -88,8 +89,11 @@ form.addEventListener('submit', function(event) {
             break;
     }
 
+    
     totCells = rows * cols;                                         // Solo ora che ho decretato la difficoltà con cui il giocatore vuole cimentarsi, posso calcolare il tot delle celle della griglia
-
+    let bombs = [];                                                 // pulisco l'array di bombe del'eventuale partita precedente
+    bombs = randomNumbers(totCells);                                // genero un nuovo array di bombe
+    console.log(bombs,totCells);
     grid.innerHTML = '';
 
     for (let i = 0; i < totCells; i++) {                            // giro per quante 'celle' voglio nella griglia

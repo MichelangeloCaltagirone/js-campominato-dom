@@ -23,3 +23,17 @@ function createCell(content, difficulty) {
     cell.append(content);                             // 'inserisco' il parametro passato alla funzione nell'elemento
     return cell;                                      // ritorno il nodo creato a chi mi invoca
 };
+
+
+// randomNumbers
+
+// funzione che genera un numero finito di numeri casuali, inserendoli in un array(rappresenteranno le bombe per questo programma)
+
+function randomNumbers(max) {
+    const numbers = [];
+    while (numbers.length < 16) {
+        const number = Math.floor(Math.random() * max) + 1;
+        if (!numbers.includes(number)) numbers.push(number);
+    }
+    return numbers;
+}
