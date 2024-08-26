@@ -67,6 +67,7 @@ select {
 .clicked {
     background-color: lightskyblue;
     color: yellow;
+    cursor: not-allowed;
 }
 .bomb {
     background-color: red;

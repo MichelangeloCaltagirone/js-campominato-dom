@@ -37,3 +37,22 @@ function randomNumbers(max, totNums) {
     }
     return numbers;
 }
+
+
+
+// endGame
+
+// funzione che controlla se la partatita è terminata per sconfitta o vittoria 
+
+function endGame (score, hasWon = false) {
+
+    const result = hasWon ? 'vinto' : ' perso';                        // preparo parte del messaggio
+
+    alert(`Hai ${result}! Hai totalizzato un punteggio di: ${score}`); // monto il messaggio
+
+    isGameOver = true;                                                 // setto variabile per impedire ancora interazioni con la griglia se la partita è terminata
+
+    for (let i = 0; i < totCells; i++) {
+
+    }
+}

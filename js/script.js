@@ -64,6 +64,7 @@ let totCells;
 let score = 0;
 let bombs = [];
 const totNums = 16;
+let isGameOver = false;
 
 
 
@@ -73,7 +74,8 @@ const totNums = 16;
 form.addEventListener('submit', function(event) {
     event.preventDefault();                              // prevengo il refresh della pagina
     score = 0;                                           // ri-inizializzo il punteggio a zero, per pulirlo dai valori di partite precedenti
-    scoreElements.innerText = '';
+    isGameOver = false;                                  // risetto la variabile di fine partita, per eliminare il valore della partita precedente
+    scoreElements.innerText = '';                        // pulisco tutta la griglia, per permettere a quella uova di essere generata correttamente
     const difficulty = difficultyField.value;            // recupero il valore della select, contenente la difficoltà impostata dall'utente
 
     switch (difficulty) {                                // controllo il valore della difficoltà selezionata, per impostare il numero di righe e colonne          
@@ -106,15 +108,16 @@ form.addEventListener('submit', function(event) {
                                              
         cell.addEventListener('click', function() {                 // ad ogni cella creata aggiungo un event listener, che reagirà al click
             console.log(this.innerText, ': è il contenuto della cella che hai cliccato'); // stampa in console del contenuto testuale del nodo cliccato, grazie a this
+            if (isGameOver) return;
             if (this.classList.contains('clicked')) return;         // controllo che non abbia già la classe 'clicked', e se si interrompo la funzione
             this.classList.add('clicked');                          // sempre al click sulla cella, aggiungo la classe clicked, per cambiarne il colore di background in pagina
             if (bombs.includes(parseInt(this.innerText))) {         // controllo che ciò che è stato cliccato è una bomba
                 this.classList.add('bomb');                         // nel caso sia una bomba, gli aggiungo la medesima classe
-                console.log('partita terminata');
+                endGame(score);
             } else scoreElements.innerText = ++score;               // aumento il punteggio del giocatore al click della cella
                                                                     
             if (score == maxScore) {                                // controllo che il giocatore abbia raggiunto o meno il massimo punteggio
-                console.log(`hai vinto! Partita terminata. Il tuo punteggio è ${maxScore}`);
+                endGame(score, true);
             }                   
         });
 
